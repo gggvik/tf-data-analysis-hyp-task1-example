@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from scipy.stats import norm
 
 
 chat_id = 250483508
@@ -13,7 +14,7 @@ def solution(x_success: int,
 # Вычисление Z-статистики и p-value
 p_pooled = (p_1 + p_2) / (x_success + y_success)
 z_stat = (p_2 - p_1) / ((p_pooled * (1 - p_pooled) * (1/x_success + 1/y_success)) ** 0.5)
-p_value = st.norm.sf(abs(z_stat)) * 2
+p_value = norm.sf(abs(z_stat)) * 2
 
 # Определение статистической значимости
 return p_value < 0.03
